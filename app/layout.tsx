@@ -12,8 +12,8 @@ const IBMPlex = IBM_Plex_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Aifluencer",
-  description: "AI-powered influencer generator",
+  title: "test",
+  description: "AI-powered generator",
 };
 
 export default function RootLayout({
