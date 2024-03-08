@@ -19,7 +19,7 @@ const Credits = async () => {
     <>
       <Header
         title="Buy Credits"
-        subtitle="Choose a credit package that suits your needs!"
+        subtitle="Choose a package that suits your needs!"
       />
 
       <section>
@@ -55,12 +55,7 @@ const Credits = async () => {
                 ))}
               </ul>
 
-              {plan.name === "Free" ? (
-                <Button variant="outline" className="credits-btn">
-                  Free Consumable
-                </Button>
-              ) : (
-                <SignedIn>
+                 <SignedIn>
                   <Checkout
                     plan={plan.name}
                     amount={plan.price}
@@ -68,7 +63,7 @@ const Credits = async () => {
                     buyerId={user._id}
                   />
                 </SignedIn>
-              )}
+         
             </li>
           ))}
         </ul>

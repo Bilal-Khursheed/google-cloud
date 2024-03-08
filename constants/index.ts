@@ -15,21 +15,6 @@ export const navLinks = [
       icon: "/assets/icons/stars.svg",
     },
     {
-      label: "Object Remove",
-      route: "/transformations/add/remove",
-      icon: "/assets/icons/scan.svg",
-    },
-    {
-      label: "Object Recolor",
-      route: "/transformations/add/recolor",
-      icon: "/assets/icons/filter.svg",
-    },
-    {
-      label: "Background Remove",
-      route: "/transformations/add/removeBackground",
-      icon: "/assets/icons/camera.svg",
-    },
-    {
       label: "Profile",
       route: "/profile",
       icon: "/assets/icons/profile.svg",
@@ -44,13 +29,13 @@ export const navLinks = [
   export const plans = [
     {
       _id: 1,
-      name: "Free",
+      name: "Basic",
       icon: "/assets/icons/free-plan.svg",
-      price: 0,
-      credits: 20,
+      price: 29.99,
+      credits: 1,
       inclusions: [
         {
-          label: "20 Free Credits",
+          label: "1 Credits",
           isIncluded: true,
         },
         {
@@ -59,23 +44,23 @@ export const navLinks = [
         },
         {
           label: "Priority Customer Support",
-          isIncluded: false,
+          isIncluded: true,
         },
         {
           label: "Priority Updates",
-          isIncluded: false,
+          isIncluded: true,
         },
       ],
     },
     {
       _id: 2,
-      name: "Pro Package",
+      name: "Standard Package",
       icon: "/assets/icons/free-plan.svg",
-      price: 40,
-      credits: 120,
+      price: 69.99,
+      credits: 3,
       inclusions: [
         {
-          label: "120 Credits",
+          label: "3 Credits",
           isIncluded: true,
         },
         {
@@ -88,19 +73,19 @@ export const navLinks = [
         },
         {
           label: "Priority Updates",
-          isIncluded: false,
+          isIncluded: true,
         },
       ],
     },
     {
       _id: 3,
-      name: "Premium Package",
+      name: "Pro Package",
       icon: "/assets/icons/free-plan.svg",
-      price: 199,
-      credits: 2000,
+      price: 109.99,
+      credits: 5,
       inclusions: [
         {
-          label: "2000 Credits",
+          label: "5 Credits",
           isIncluded: true,
         },
         {
