@@ -18,6 +18,7 @@ const GeneratePage = async () => {
       <section className="mt-10">
         <TransformationForm
           action="Create"
+          type="fill"
           userId={user._id}
           creditBalance={user.creditBalance}
         />
