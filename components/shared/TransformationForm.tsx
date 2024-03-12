@@ -23,6 +23,7 @@ import {
   bodyOptions,
   heightOptions,
   defaultValues,
+  transformationTypes,
 } from "@/constants";
 import { useState } from "react";
 
@@ -56,6 +57,7 @@ const TransformationForm = ({
   type,
   creditBalance,
 }: TransformationFormProps) => {
+  const transformationType = transformationTypes[type];
   const [Image, setImage] = useState(data);
   const [newTransformation, setNewTransformation] =
     useState<Transformations | null>(null);

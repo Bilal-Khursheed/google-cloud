@@ -82,3 +82,19 @@ declare type TransformedImageProps = {
   hasDownload?: boolean;
   setIsTransforming?: React.Dispatch<React.SetStateAction<boolean>>;
 };
+
+declare type Transformations = {
+  restore?: boolean;
+  fillBackground?: boolean;
+  remove?: {
+    prompt: string;
+    removeShadow?: boolean;
+    multiple?: boolean;
+  };
+  recolor?: {
+    prompt?: string;
+    to: string;
+    multiple?: boolean;
+  };
+  removeBackground?: boolean;
+};
