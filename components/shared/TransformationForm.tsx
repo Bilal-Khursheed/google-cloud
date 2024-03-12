@@ -1,117 +1,236 @@
-"use client"
+"use client";
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
+import { Form } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { CustomField } from "./CustomField";
 import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { CustomField } from "./CustomField"
-import { aspectRatioOptions, defaultValues, transformationTypes } from "@/constants"
-import { useState } from "react"
-import { AspectRatioKey } from "@/lib/utils"
+  eyesOptions,
+  skinOptions,
+  hairOptions,
+  bustOption,
+  bodyOptions,
+  heightOptions,
+  defaultValues,
+} from "@/constants";
+import { useState } from "react";
 
 export const formSchema = z.object({
   title: z.string(),
-  AspectRatio: z.string().optional(),
-  color: z.string().optional(),
-  prompt: z.string().optional(),
-  publicId: z.string(),
-})
+  eyes: z.enum(["Brown", "Blue", "Black", "Green", "Grey"]),
+  skin: z.enum(["White", "Tan", "Black"]),
+  hair: z.enum([
+    "Blonde",
+    "Platinum Blond",
+    "Brown",
+    "Black",
+    "Red",
+    "Grey",
+    "Blue",
+    "Green",
+    "Purple",
+    "Pink",
+    "Orange",
+    "Multicolored",
+  ]),
+  bust: z.enum(["Small", "Medium", "Large"]),
+  body: z.enum(["Slim", "Normal", "Fit", "Muscular", "Curvy", "Fat"]),
+  height: z.enum(["dwarf", "petite", "normal", "tall"]),
+});
 
-const TransformationForm = ({action, data = null, userId, type, creditBalance}: TransformationFormProps) => {
-    const transformationType = transformationTypes[type];
-    const [Image, setImage] = useState(data)
-    const [newTransformation, setNewTransformation] = useState<Transformations | null >(null);
-    const [isSubmitting, setSubmitting] = useState(false);
+const TransformationForm = ({
+  action,
+  data = null,
+  userId,
+  type,
+  creditBalance,
+}: TransformationFormProps) => {
+  const [Image, setImage] = useState(data);
+  const [newTransformation, setNewTransformation] =
+    useState<Transformations | null>(null);
+  const [isSubmitting, setSubmitting] = useState(false);
 
-    const initialValues = data && action === 'Update' ? {
+  const initialValues =
+    data && action === "Update"
+      ? {
+          ...defaultValues,
+          ...data,
+        }
+      : defaultValues;
 
-        title: data?.title,
-        AspectRatio: data?.AspectRatio,
-        color: data?.color,
-        prompt: data?.prompt,
-        publicId: data?.publicId,
-
-    } : defaultValues
-    
-     // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: initialValues,})
- 
-  // 2. Define a submit handler.
+    defaultValues: initialValues,
+  });
+
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
+    console.log(values);
   }
 
-  const onSelectFieldHandler = (value: string, onChangeField: (value: string) => void) => {}
-
-    return (
-        <Form {...form}>
+  return (
+    <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <CustomField
-        control={form.control}
-        name="title"
-        formLabel="Image Title"
-        className="w-full"
-        render={({ field }) => <Input {...field}
-        className="input-field" />}
+          control={form.control}
+          name="title"
+          formLabel="Name"
+          className="w-full"
+          render={({ field }) => <Input {...field} className="input-field" />}
         />
-        {type === 'fill' && (
-            <CustomField
-            control={form.control}
-            name="AspectRatio"
-            formLabel="Aspect Ratio"
-            className="w-full"
-            render={({ field}) => (
-            <Select
-            onValueChange={(value) => 
-            onSelectFieldHandler(value, field.
-            onChange)}
-            >
-                <SelectTrigger className="select-field">
-                  <SelectValue placeholder="Select Size" />
-                </SelectTrigger>
-                <SelectContent>
-                {Object.keys(aspectRatioOptions).map((key) => (
-                <SelectItem key={key} value={key}
-                className="select-item">
-                    {aspectRatioOptions[key as 
-                        AspectRatioKey].label}
-                        </SelectItem>
-                    ))}
-                </SelectContent>
-              </Select>
-              )}
-            />
-        )}
-        <Button 
-        type="submit"
-        className="submit-button capitalize"
-        disabled={isSubmitting}
-        >Submit</Button>
-              </form>
+
+        {/* Skin Select Field */}
+        <CustomField
+          control={form.control}
+          name="skin"
+          formLabel="Skin Color"
+          className="w-full"
+          render={({ field }) => (
+            <Select {...field} onValueChange={field.onChange}>
+              <SelectTrigger className="select-field">
+                <SelectValue placeholder="Select Skin Color" />
+              </SelectTrigger>
+              <SelectContent>
+                {Object.entries(skinOptions).map(([value, label]) => (
+                  <SelectItem key={value} value={value} className="select-item">
+                    {label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+        />
+
+        {/* Height Select Field */}
+        <CustomField
+          control={form.control}
+          name="height"
+          formLabel="Height"
+          className="w-full"
+          render={({ field }) => (
+            <Select {...field} onValueChange={field.onChange}>
+              <SelectTrigger className="select-field">
+                <SelectValue placeholder="Select Height" />
+              </SelectTrigger>
+              <SelectContent>
+                {Object.entries(heightOptions).map(([value, label]) => (
+                  <SelectItem key={value} value={value} className="select-item">
+                    {label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+        />
+
+        {/* Body Select Field */}
+        <CustomField
+          control={form.control}
+          name="body"
+          formLabel="Body Type"
+          className="w-full"
+          render={({ field }) => (
+            <Select {...field} onValueChange={field.onChange}>
+              <SelectTrigger className="select-field">
+                <SelectValue placeholder="Select Body Color" />
+              </SelectTrigger>
+              <SelectContent>
+                {Object.entries(bodyOptions).map(([value, label]) => (
+                  <SelectItem key={value} value={value} className="select-item">
+                    {label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+        />
+
+        {/* Bust Select Field */}
+        <CustomField
+          control={form.control}
+          name="bust"
+          formLabel="Bust Size"
+          className="w-full"
+          render={({ field }) => (
+            <Select {...field} onValueChange={field.onChange}>
+              <SelectTrigger className="select-field">
+                <SelectValue placeholder="Select Bust Size" />
+              </SelectTrigger>
+              <SelectContent>
+                {Object.entries(bustOption).map(([value, label]) => (
+                  <SelectItem key={value} value={value} className="select-item">
+                    {label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+        />
+
+        {/* Hair Select Field */}
+        <CustomField
+          control={form.control}
+          name="hair"
+          formLabel="Hair Color"
+          className="w-full"
+          render={({ field }) => (
+            <Select {...field} onValueChange={field.onChange}>
+              <SelectTrigger className="select-field">
+                <SelectValue placeholder="Select Hair Color" />
+              </SelectTrigger>
+              <SelectContent>
+                {Object.entries(hairOptions).map(([value, label]) => (
+                  <SelectItem key={value} value={value} className="select-item">
+                    {label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+        />
+
+        {/* Eyes Select Field */}
+        <CustomField
+          control={form.control}
+          name="eyes"
+          formLabel="Eyes Color"
+          className="w-full"
+          render={({ field }) => (
+            <Select {...field} onValueChange={field.onChange}>
+              <SelectTrigger className="select-field">
+                <SelectValue placeholder="Select Eyes Color" />
+              </SelectTrigger>
+              <SelectContent>
+                {Object.entries(eyesOptions).map(([value, label]) => (
+                  <SelectItem key={value} value={value} className="select-item">
+                    {label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+        />
+
+        <Button
+          type="submit"
+          className="submit-button capitalize"
+          disabled={isSubmitting}
+        >
+          Submit
+        </Button>
+      </form>
     </Form>
-    )
-}
+  );
+};
 
-
-
-export default TransformationForm
+export default TransformationForm;

@@ -20,9 +20,13 @@ const UserSchema = new Schema({
     type: Number,
     default: 1,
   },
+  albumId: {
+    type: Number,
+    default: 0,
+  },
   creditBalance: {
     type: Number,
-    default: 10,
+    default: 0,
   },
 });
 
