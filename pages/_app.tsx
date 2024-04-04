@@ -1,13 +1,12 @@
-// pages/_app.tsx
+import { AppProps } from "next/app";
 import { ClerkProvider, SignedIn, SignedOut, useUser } from "@clerk/nextjs";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import "../app/globals.css";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ClerkProvider>
-      {/* Render the component conditionally based on the user's sign-in status */}
       <SignedIn>
         <AuthRedirect>
           <Component {...pageProps} />
@@ -20,21 +19,22 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
+interface AuthRedirectProps {
+  children: ReactNode;
+}
+
 // This component handles the redirection after login
-function AuthRedirect({ children }) {
+function AuthRedirect({ children }: AuthRedirectProps) {
   const { isSignedIn } = useUser();
   const router = useRouter();
 
   useEffect(() => {
-    // If the user is signed in and we're on the landing page, redirect to the dashboard
     if (isSignedIn && router.pathname === "/") {
-      // Make sure '/home' is the correct path to your dashboard page
       router.push("/home");
     }
   }, [isSignedIn, router]);
 
-  // If the logic has passed, render the children components
-  return children;
+  return <>{children}</>;
 }
 
 export default MyApp;
