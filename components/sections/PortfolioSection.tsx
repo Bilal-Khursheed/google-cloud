@@ -1,8 +1,8 @@
 import React from "react";
+import Image from "next/image";
 import MainButton from "../common/MainButton";
 
 function PortfolioSection() {
-  // Create an array of image numbers for easier mapping
   const firstRowImages = Array.from({ length: 6 }, (_, i) => i + 1); // Images 1 to 6
   const secondRowImages = Array.from({ length: 12 }, (_, i) => i + 7); // Images 7 to 18
 
@@ -18,20 +18,30 @@ function PortfolioSection() {
       </div>
       <div className="flex flex-wrap justify-center gap-4">
         {firstRowImages.map((num) => (
-          <img
+          <div
             key={num}
-            src={`/images/portfolio/portfolio${num}.png`}
-            alt={`Portfolio ${num}`}
-            className="w-[calc(16.666%_-_1rem)] md:w-[calc(11.666%_-_2rem)]"
-          />
+            className="relative w-[calc(16.666%_-_1rem)] md:w-[calc(11.666%_-_2rem)] h-[150px] md:h-[200px]"
+          >
+            <Image
+              src={`/images/portfolio/portfolio${num}.png`}
+              alt={`Portfolio ${num}`}
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
         ))}
         {secondRowImages.map((num) => (
-          <img
+          <div
             key={num}
-            src={`/images/portfolio/portfolio${num}.png`}
-            alt={`Portfolio ${num}`}
-            className="w-[calc(16.666%_-_1rem)] md:w-[calc(11.666%_-_2rem)]"
-          />
+            className="relative w-[calc(16.666%_-_1rem)] md:w-[calc(11.666%_-_2rem)] h-[150px] md:h-[200px]"
+          >
+            <Image
+              src={`/images/portfolio/portfolio${num}.png`}
+              alt={`Portfolio ${num}`}
+              layout="fill"
+              objectFit="cover"
+            />
+          </div>
         ))}
       </div>
     </section>

@@ -18,7 +18,7 @@ const UserSchema = new Schema({
   },
   planId: {
     type: Number,
-    default: 1,
+    default: 0,
   },
   albumId: {
     type: Number,

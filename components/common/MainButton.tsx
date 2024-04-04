@@ -1,4 +1,5 @@
 import { forwardRef, ReactElement } from "react";
+import Image from "next/image"; // Import Image from next/image for optimized image handling
 import { Loader2 } from "lucide-react";
 import { Button } from "../ui/button";
 
@@ -6,7 +7,7 @@ type MainButtonProps = {
   text: string;
   form?: string;
   isLoading?: boolean;
-  onClick?: () => void; // Updated prop name
+  onClick?: () => void;
   isSubmitable?: boolean;
   disabled?: boolean;
   width?: "full_width" | string;
@@ -26,7 +27,7 @@ const MainButton = forwardRef<HTMLButtonElement, MainButtonProps>(
       text,
       isLoading = false,
       form,
-      onClick, // Updated prop usage
+      onClick,
       disabled = false,
       isSubmitable,
       width,
@@ -58,29 +59,32 @@ const MainButton = forwardRef<HTMLButtonElement, MainButtonProps>(
       <Button
         form={form}
         className={`${variantClasses} shadow-xl ${propWidth} select-none rounded-[0.625rem] ${size_height} ${classes}`}
-        onClick={!disabled ? onClick : undefined} // Updated prop usage
+        onClick={!disabled ? onClick : undefined}
         type={isSubmitable ? "submit" : "button"}
         ref={ref}
         disabled={disabled}
       >
         {iconRoute && (
-          <img
-            src={iconRoute}
-            alt="left button icon"
-            className="w-[24px] h-[24px]"
-          />
+          <span className="inline-flex w-[24px] h-[24px] relative">
+            <Image
+              src={iconRoute}
+              alt="left button icon"
+              layout="fill"
+              objectFit="cover"
+            />
+          </span>
         )}
-        {iconRoute && <span>&nbsp;</span>}
         {iconComponent}
-        {iconComponent && <span>&nbsp;</span>}
         {text}
-        {rightIconRoute && <span>&nbsp;</span>}
         {rightIconRoute && (
-          <img
-            src={rightIconRoute}
-            alt="right button icon"
-            className={rightIconClass}
-          />
+          <span className={`inline-flex ${rightIconClass} relative`}>
+            <Image
+              src={rightIconRoute}
+              alt="right button icon"
+              layout="fill"
+              objectFit="cover"
+            />
+          </span>
         )}
       </Button>
     ) : (
