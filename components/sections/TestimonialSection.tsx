@@ -28,7 +28,7 @@ function TestimonialSection() {
     },
     {
       id: 3,
-      imageUrl: "/images/alan.jpg",
+      imageUrl: "/images/gene.jpg",
       reviewerName: "Allan.K",
       review:
         "After trying lots of sites and also services like Fiverr etc... AIfluencer is probably the best for quality and price. It's a real deal.",

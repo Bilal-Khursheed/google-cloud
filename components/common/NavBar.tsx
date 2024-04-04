@@ -1,11 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { X } from "lucide-react";
 import MainButton from "./MainButton";
 import Link from "next/link";
 
-function NavBar({ scrollToHome, scrollToService, scrollToPlans, scrollToFAQ }) {
+interface NavBarProps {
+  scrollToHome: () => void;
+  scrollToService: () => void;
+  scrollToPlans: () => void;
+  scrollToFAQ: () => void;
+}
+
+function NavBar({
+  scrollToHome,
+  scrollToService,
+  scrollToPlans,
+  scrollToFAQ,
+}: NavBarProps) {
+  // Now you can use useState directly without needing to prefix it with React
   const [menu, setMenu] = useState(false);
   const toggleMenu = () => setMenu(!menu);
 
