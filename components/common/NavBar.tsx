@@ -6,18 +6,12 @@ import MainButton from "./MainButton";
 import Link from "next/link";
 
 interface NavBarProps {
-  scrollToHome: () => void;
   scrollToService: () => void;
   scrollToPlans: () => void;
   scrollToFAQ: () => void;
 }
 
-function NavBar({
-  scrollToHome,
-  scrollToService,
-  scrollToPlans,
-  scrollToFAQ,
-}: NavBarProps) {
+function NavBar({ scrollToService, scrollToPlans, scrollToFAQ }: NavBarProps) {
   // Now you can use useState directly without needing to prefix it with React
   const [menu, setMenu] = useState(false);
   const toggleMenu = () => setMenu(!menu);
