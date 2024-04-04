@@ -6,22 +6,20 @@ import MainButton from "./MainButton";
 import Link from "next/link";
 
 interface NavBarProps {
+  scrollToTop: () => void;
   scrollToService: () => void;
   scrollToPlans: () => void;
   scrollToFAQ: () => void;
 }
 
-function NavBar({ scrollToService, scrollToPlans, scrollToFAQ }: NavBarProps) {
-  // Now you can use useState directly without needing to prefix it with React
+function NavBar({
+  scrollToTop,
+  scrollToService,
+  scrollToPlans,
+  scrollToFAQ,
+}: NavBarProps) {
   const [menu, setMenu] = useState(false);
   const toggleMenu = () => setMenu(!menu);
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
 
   return (
     <div className="md:sticky md:top-0 md:shadow-none z-20">

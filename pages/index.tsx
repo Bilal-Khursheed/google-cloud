@@ -10,18 +10,17 @@ import PortfolioSection from "@/components/sections/PortfolioSection";
 import PlansSection from "@/components/sections/PlanSections";
 
 export default function Home() {
-  const serviceRef = useRef(null); // Ref for the ServiceSection
-  const plansRef = useRef(null); // Ref for the PlansSection
-  const faqRef = useRef(null); // Assuming you have a FAQSection
+  const serviceRef = useRef<HTMLDivElement>(null);
+  const plansRef = useRef<HTMLDivElement>(null);
+  const faqRef = useRef<HTMLDivElement>(null);
 
-  // Functions to scroll to each section
   const scrollToService = () =>
     serviceRef.current?.scrollIntoView({ behavior: "smooth" });
   const scrollToPlans = () =>
     plansRef.current?.scrollIntoView({ behavior: "smooth" });
   const scrollToFAQ = () =>
     faqRef.current?.scrollIntoView({ behavior: "smooth" });
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" }); // Function to scroll to the top of the page
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
     <main>
