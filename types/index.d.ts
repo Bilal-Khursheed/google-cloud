@@ -98,3 +98,21 @@ declare type Transformations = {
   };
   removeBackground?: boolean;
 };
+
+declare type AIInfluencerFormProps = {
+  action: "Create";
+  userId: string;
+  creditBalance: number;
+  data?: AIInfluencerData | null;
+};
+
+declare type AIInfluencerData = {
+  title: string;
+  eyes: string;
+  skin: string;
+  hair: string;
+  bust: string;
+  body: string;
+  height: string;
+  age: string;
+};

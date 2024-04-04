@@ -1,22 +1,17 @@
 export const navLinks = [
   {
     label: "Home",
-    route: "/",
+    route: "/home",
     icon: "/assets/icons/home.svg",
   },
   {
-    label: "Album",
-    route: "/albums",
+    label: "My AI Influencers",
+    route: "/influencers",
     icon: "/assets/icons/image.svg",
   },
   {
-    label: "Images",
-    route: "/images/",
-    icon: "/assets/icons/stars.svg",
-  },
-  {
-    label: "Generate",
-    route: "/generate",
+    label: "Create AI Influencer",
+    route: "/create",
     icon: "/assets/icons/stars.svg",
   },
   {
@@ -40,19 +35,23 @@ export const plans = [
     credits: 1,
     inclusions: [
       {
-        label: "1 Credits",
+        label: "15 HD Photos",
         isIncluded: true,
       },
       {
-        label: "Basic Access to Services",
+        label: "HD Quality",
         isIncluded: true,
       },
       {
-        label: "Priority Customer Support",
+        label: "100% Realistic",
         isIncluded: true,
       },
       {
-        label: "Priority Updates",
+        label: "Consistant Face",
+        isIncluded: true,
+      },
+      {
+        label: "Multiple Clothing & Diverse Decors",
         isIncluded: true,
       },
     ],
@@ -63,21 +62,26 @@ export const plans = [
     icon: "/assets/icons/free-plan.svg",
     price: 39.99,
     credits: 2,
+    isBestSeller: true,
     inclusions: [
       {
-        label: "2 Credits",
+        label: "30 HD Photos",
         isIncluded: true,
       },
       {
-        label: "Full Access to Services",
+        label: "HD Quality",
         isIncluded: true,
       },
       {
-        label: "Priority Customer Support",
+        label: "100% Realistic",
         isIncluded: true,
       },
       {
-        label: "Priority Updates",
+        label: "Consistant Face",
+        isIncluded: true,
+      },
+      {
+        label: "Multiple Clothing & Diverse Decors",
         isIncluded: true,
       },
     ],
@@ -90,72 +94,34 @@ export const plans = [
     credits: 3,
     inclusions: [
       {
-        label: "3 Credits",
+        label: "30 HD Photos + 5 HD Photos Erotic/Nudes",
         isIncluded: true,
       },
       {
-        label: "Full Access to Services",
+        label: "HD Quality",
         isIncluded: true,
       },
       {
-        label: "Priority Customer Support",
+        label: "100% Realistic",
         isIncluded: true,
       },
       {
-        label: "Priority Updates",
+        label: "Consistant Face",
+        isIncluded: true,
+      },
+      {
+        label: "Multiple Clothing & Diverse Decors",
         isIncluded: true,
       },
     ],
   },
 ];
 
-export const transformationTypes = {
-  restore: {
-    type: "restore",
-    title: "Albums",
-    subTitle: "Refine images by removing noise and imperfections",
-    config: { restore: true },
-    icon: "image.svg",
-  },
-  removeBackground: {
-    type: "removeBackground",
-    title: "Background Remove",
-    subTitle: "Removes the background of the image using AI",
-    config: { removeBackground: true },
-    icon: "camera.svg",
-  },
-  fill: {
-    type: "fill",
-    title: "Image",
-    subTitle: "Enhance an image's dimensions using AI outpainting",
-    config: { fillBackground: true },
-    icon: "stars.svg",
-  },
-  remove: {
-    type: "remove",
-    title: "Object Remove",
-    subTitle: "Identify and eliminate objects from images",
-    config: {
-      remove: { prompt: "", removeShadow: true, multiple: true },
-    },
-    icon: "scan.svg",
-  },
-  recolor: {
-    type: "recolor",
-    title: "Object Recolor",
-    subTitle: "Identify and recolor objects from the image",
-    config: {
-      recolor: { prompt: "", to: "", multiple: true },
-    },
-    icon: "filter.svg",
-  },
-};
-
 export const heightOptions = {
-  dwarf: "Dwarf",
-  petite: "Petite",
-  noraml: "Normal",
-  tall: "Tall",
+  Dwarf: "Dwarf",
+  Petite: "Petite",
+  Normal: "Normal",
+  Tall: "Tall",
 };
 
 export const bodyOptions = {
@@ -173,6 +139,15 @@ export const eyesOptions = {
   Black: "Black",
   Green: "Green",
   Grey: "Grey",
+};
+
+export const ageOptions = {
+  25: "25+",
+  30: "30+",
+  35: "35+",
+  40: "40+",
+  Milf: "Milf",
+  Gilf: "Gilf",
 };
 
 export const skinOptions = {

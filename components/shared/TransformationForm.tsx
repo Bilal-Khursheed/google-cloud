@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -10,7 +11,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -22,10 +22,13 @@ import {
   bustOption,
   bodyOptions,
   heightOptions,
+  ageOptions,
   defaultValues,
-  transformationTypes,
 } from "@/constants";
-import { useState } from "react";
+import { auth } from "@clerk/nextjs";
+import { redirect } from "next/navigation";
+import { getUserById, updateCredits } from "@/lib/actions/user.actions";
+import { sendContactForm } from "../../lib/api";
 
 export const formSchema = z.object({
   title: z.string(),
@@ -47,38 +50,57 @@ export const formSchema = z.object({
   ]),
   bust: z.enum(["Small", "Medium", "Large"]),
   body: z.enum(["Slim", "Normal", "Fit", "Muscular", "Curvy", "Fat"]),
-  height: z.enum(["dwarf", "petite", "normal", "tall"]),
+  height: z.enum(["Dwarf", "Petite", "Normal", "Tall"]),
+  age: z.enum(["25", "30", "35", "40", "Milf", "Gilf"]),
 });
 
-const TransformationForm = ({
-  action,
-  data = null,
+interface AIInfluencerFormProps {
+  userId: string;
+  creditBalance: number;
+}
+
+const TransformationForm: React.FC<AIInfluencerFormProps> = ({
   userId,
-  type,
   creditBalance,
-}: TransformationFormProps) => {
-  const transformationType = transformationTypes[type];
-  const [Image, setImage] = useState(data);
-  const [newTransformation, setNewTransformation] =
-    useState<Transformations | null>(null);
+}) => {
   const [isSubmitting, setSubmitting] = useState(false);
-
-  const initialValues =
-    data && action === "Update"
-      ? {
-          ...defaultValues,
-          ...data,
-        }
-      : defaultValues;
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: initialValues,
+    defaultValues,
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-  }
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    if (creditBalance <= 0) {
+      alert("You do not have enough credits.");
+      return;
+    }
+
+    setSubmitting(true);
+
+    try {
+      const creditDeduction = -1;
+      const updatedBalance = await updateCredits(userId, creditDeduction);
+
+      console.log(`Updated balance: ${updatedBalance}`);
+
+      const formData = {
+        userId,
+        ...values,
+      };
+      await sendContactForm(formData);
+
+      alert(
+        "Your AI influencer creation request has been submitted. You will be notified via email once the images are generated."
+      );
+    } catch (error) {
+      console.error("Error submitting AI influencer form:", error);
+      alert(
+        "There was a problem with your submission. Please try again later."
+      );
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <Form {...form}>
@@ -89,6 +111,28 @@ const TransformationForm = ({
           formLabel="Name"
           className="w-full"
           render={({ field }) => <Input {...field} className="input-field" />}
+        />
+
+        {/* Age Select Field */}
+        <CustomField
+          control={form.control}
+          name="age"
+          formLabel="Age"
+          className="w-full"
+          render={({ field }) => (
+            <Select {...field} onValueChange={field.onChange}>
+              <SelectTrigger className="select-field">
+                <SelectValue placeholder="Select Age" />
+              </SelectTrigger>
+              <SelectContent>
+                {Object.entries(ageOptions).map(([value, label]) => (
+                  <SelectItem key={value} value={value} className="select-item">
+                    {label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
         />
 
         {/* Skin Select Field */}

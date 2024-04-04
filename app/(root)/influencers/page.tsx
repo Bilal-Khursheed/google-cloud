@@ -3,7 +3,7 @@ import { getUserById } from "@/lib/actions/user.actions";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
-const ImagesPage = async () => {
+const MyInfluencersPage = async () => {
   const { userId } = auth();
 
   if (!userId) redirect("/sign-in");
@@ -12,9 +12,9 @@ const ImagesPage = async () => {
 
   return (
     <>
-      <Header title="Images" subtitle="Images" />
+      <Header title="My AI Influencers" subtitle="Albums" />
     </>
   );
 };
 
-export default ImagesPage;
+export default MyInfluencersPage;

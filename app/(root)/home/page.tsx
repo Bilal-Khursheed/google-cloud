@@ -10,10 +10,12 @@ const Home = async () => {
   if (!userId) redirect("/sign-in");
 
   const user = await getUserById(userId);
+  const username = user.username;
+  const welcomeMessage = `Welcome ${username} !`;
 
   return (
     <>
-      <Header title="Welcome USER !" />
+      <Header title={welcomeMessage} />
 
       <section className="profile">
         <div className="profile-balance">
@@ -31,7 +33,7 @@ const Home = async () => {
         </div>
 
         <div className="profile-image-manipulation">
-          <p className="p-14-medium md:p-16-medium">IMAGE MANIPULATION DONE</p>
+          <p className="p-14-medium md:p-16-medium">AI INFLUENCERS</p>
           <div className="mt-4 flex items-center gap-4">
             <Image
               src="/assets/icons/photo.svg"

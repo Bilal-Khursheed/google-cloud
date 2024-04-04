@@ -4,7 +4,7 @@ import { getUserById } from "@/lib/actions/user.actions";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
-const GeneratePage = async () => {
+const CreateAiInfluencer = async () => {
   const { userId } = auth();
 
   if (!userId) redirect("/sign-in");
@@ -13,7 +13,10 @@ const GeneratePage = async () => {
 
   return (
     <>
-      <Header title="Generate" subtitle="Generate Album" />
+      <Header
+        title="Create AI Influencer"
+        subtitle="Customize Your Digital Influencer"
+      />
 
       <section className="mt-10">
         <TransformationForm
@@ -27,4 +30,4 @@ const GeneratePage = async () => {
   );
 };
 
-export default GeneratePage;
+export default CreateAiInfluencer;

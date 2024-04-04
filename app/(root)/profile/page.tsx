@@ -13,7 +13,6 @@ const Profile = async ({ searchParams }: SearchParamProps) => {
 
   const user = await getUserById(userId);
 
-
   return (
     <>
       <Header title="Profile" />
@@ -34,7 +33,7 @@ const Profile = async ({ searchParams }: SearchParamProps) => {
         </div>
 
         <div className="profile-image-manipulation">
-          <p className="p-14-medium md:p-16-medium">IMAGE MANIPULATION DONE</p>
+          <p className="p-14-medium md:p-16-medium">AI INFLUENCERS</p>
           <div className="mt-4 flex items-center gap-4">
             <Image
               src="/assets/icons/photo.svg"
@@ -46,12 +45,6 @@ const Profile = async ({ searchParams }: SearchParamProps) => {
             <h2 className="h2-bold text-dark-600">{10}</h2>
           </div>
         </div>
-      </section>
-
-      <section className="mt-8 md:mt-14">
-        
-
-          page={page}
       </section>
     </>
   );
