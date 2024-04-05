@@ -1,5 +1,13 @@
 import { Schema, model, models } from "mongoose";
 
+const InfluencerSchema = new Schema(
+  {
+    influencerId: String,
+    images: [{ type: String }],
+  },
+  { _id: false }
+);
+
 const UserSchema = new Schema({
   clerkId: {
     type: String,
@@ -20,14 +28,11 @@ const UserSchema = new Schema({
     type: Number,
     default: 0,
   },
-  albumId: {
-    type: Number,
-    default: 0,
-  },
   creditBalance: {
     type: Number,
     default: 0,
   },
+  influencers: [InfluencerSchema],
 });
 
 const User = models?.User || model("User", UserSchema);
