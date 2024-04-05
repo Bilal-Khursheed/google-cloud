@@ -27,8 +27,13 @@ import {
 } from "@/constants";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
-import { getUserById, updateCredits } from "@/lib/actions/user.actions";
+import {
+  getUserById,
+  updateCredits,
+  createInfluencer,
+} from "@/lib/actions/user.actions";
 import { sendContactForm } from "../../lib/api";
+import { v4 as uuidv4 } from "uuid";
 
 export const formSchema = z.object({
   title: z.string(),
@@ -80,6 +85,10 @@ const TransformationForm: React.FC<AIInfluencerFormProps> = ({
     try {
       const creditDeduction = -1;
       const updatedBalance = await updateCredits(userId, creditDeduction);
+
+      const influencerId = uuidv4();
+
+      const response = await createInfluencer(userId, influencerId);
 
       console.log(`Updated balance: ${updatedBalance}`);
 

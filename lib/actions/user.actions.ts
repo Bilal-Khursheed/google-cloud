@@ -44,7 +44,7 @@ export async function updateUser(clerkId: string, user: UpdateUserParams) {
     });
 
     if (!updatedUser) throw new Error("User update failed");
-    
+
     return JSON.parse(JSON.stringify(updatedUser));
   } catch (error) {
     handleError(error);
@@ -80,14 +80,49 @@ export async function updateCredits(userId: string, creditFee: number) {
 
     const updatedUserCredits = await User.findOneAndUpdate(
       { _id: userId },
-      { $inc: { creditBalance: creditFee }},
+      { $inc: { creditBalance: creditFee } },
       { new: true }
-    )
+    );
 
-    if(!updatedUserCredits) throw new Error("User credits update failed");
+    if (!updatedUserCredits) throw new Error("User credits update failed");
 
     return JSON.parse(JSON.stringify(updatedUserCredits));
   } catch (error) {
     handleError(error);
+  }
+}
+
+// CREATE INFLUENCER
+export async function createInfluencer(userId: string, influencerId: string) {
+  try {
+    await connectToDatabase();
+
+    // Find the user by userId
+    const user = await User.findById(userId);
+
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    // Add the new influencer to the user's influencers array
+    const newInfluencer = {
+      influencerId: influencerId,
+      images: [], // Initially empty, to be populated with image URLs later
+    };
+    user.influencers.push(newInfluencer);
+
+    // Save the updated user document
+    await user.save();
+
+    return {
+      success: true,
+      message: "Influencer created successfully",
+      influencerId,
+    };
+  } catch (error) {
+    // Here we assert the error type to be of type Error to access the message property
+    const err = error as Error;
+    console.error("Error creating influencer:", err);
+    return { success: false, message: err.message };
   }
 }
