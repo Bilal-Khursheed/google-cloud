@@ -21,6 +21,12 @@ const CreateAiInfluencer = async () => {
         subtitle="Customize Your Digital Influencer"
       />
 
+      {!hasCredits && (
+        <p className="text-center text-red-500">
+          You don't have any credits, please buy credits to get started.
+        </p>
+      )}
+
       <section className="mt-10">
         {hasCredits ? (
           <TransformationForm
