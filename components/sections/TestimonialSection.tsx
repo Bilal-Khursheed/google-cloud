@@ -17,7 +17,7 @@ function TestimonialSection() {
       imageUrl: "/images/kayley.jpg",
       reviewerName: "Nico.M",
       review:
-        "Got my AI influencer up and running with AIfluencer quicker than I thought possible. The process was simple, and the results blew me away. My followers are loving it, and engagement is through the roof. Couldn't be happier with the choice.",
+        "Got my AI influencer up and running with AIfluencer quicker than I thought possible. The process was simple, and the results were very good. My followers are loving it, and engagement is through the roof. Couldn't be happier with the choice.",
     },
     {
       id: 2,
@@ -31,11 +31,11 @@ function TestimonialSection() {
       imageUrl: "/images/gene.jpg",
       reviewerName: "Allan.K",
       review:
-        "After trying lots of sites and also services like Fiverr etc... AIfluencer is probably the best for quality and price. It's a real deal.",
+        "After trying lots of sites and also services like Fiverr etc... AIfluencer is probably the best in terms of quality and price. It's a real deal.",
     },
   ];
   return (
-    <section className="mt-[9rem]">
+    <section className="mt-[10rem]">
       <Header title="testimonials" subtitle="What Clients Say About Us" />
       <div className="grid grid-cols-1 gap-16  md:grid-cols-2 mt-8 md:mt-[6.75rem]">
         {appReviewData.map((review) => (

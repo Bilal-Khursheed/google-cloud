@@ -26,9 +26,9 @@ function FaqSection() {
         "Our AI technology aims to deliver high-definition photos that are as realistic as possible. However, automated image generation is a complex process, and some generated photos might contain errors. We are committed to continuously refining our system to minimize these occurrences through regular updates.",
     },
     {
-      question: "Can I generate more than 15 photos for the same character?",
+      question: "Can I generate more than 10 photos for the same character?",
       answer:
-        "Absolutely! Each credit allows you to either create a new AI influencer or generate additional sets of 15 photos for an already created influencer.",
+        "Absolutely! Each credit allows you to either create a new AI influencer or generate additional sets of 10 photos for an already created influencer.",
     },
     {
       question: "Can I use this service for commercial projects?",
@@ -46,7 +46,7 @@ function FaqSection() {
   };
 
   return (
-    <section className="mt-[9rem]">
+    <section className="mt-[10rem]">
       <Header title="Frequently Asked Questions" subtitle="FAQ" />
       <div className="mt-8 md:mt-[3.31rem]">
         {faqs.map((faq, index) => (

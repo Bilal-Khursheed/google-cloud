@@ -1,8 +1,8 @@
 import React from "react";
 import MainButton from "../common/MainButton";
 import { useRouter } from "next/router";
-import { Star, Users, Shield } from "lucide-react";
-import NextImage from "next/image"; // Correct import for Next.js Image component
+import { Star, Users, Shield, Image } from "lucide-react"; // Import the Image icon
+import NextImage from "next/image";
 
 function HeroSection() {
   const router = useRouter();
@@ -26,12 +26,8 @@ function HeroSection() {
             <p className="text-md font-medium">+3,212 AI Influencers created</p>
           </div>
           <div className="flex items-center mb-2">
-            <NextImage
-              src="/assets/icons/image-icon.svg"
-              alt="Image Icon"
-              width={20}
-              height={20}
-            />
+            <Image className="text-primary w-5 h-5 mr-2" />{" "}
+            {/* Using the Image icon */}
             <p className="text-md font-medium">+48,233 images generated</p>
           </div>
           <div className="flex items-center mb-4">

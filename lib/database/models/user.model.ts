@@ -30,7 +30,7 @@ const UserSchema = new Schema({
   },
   creditBalance: {
     type: Number,
-    default: 0,
+    default: 5,
   },
   influencers: [InfluencerSchema],
 });

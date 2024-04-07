@@ -7,7 +7,7 @@ import Link from "next/link";
 
 function PlansSection() {
   return (
-    <section className="mt-32 mb-12">
+    <section className="mt-[10rem] mb-12">
       <Header title="Choose Your Plan" subtitle="Our Plans" />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[3.56rem] justify-around mt-4 md:mt-12">
         {plans.map((plan) => (

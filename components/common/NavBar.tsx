@@ -56,7 +56,6 @@ function NavBar({
             </p>
           </div>
           <div className="flex items-center gap-[40px] select-none">
-            {/* Login and Sign up links/buttons remain unchanged */}
             <Link href="/sign-in" passHref>
               <button className="hover:text-primary cursor-pointer flex items-center gap-2 font-[500] text-gray">
                 Login
@@ -106,7 +105,6 @@ function NavBar({
         {menu && (
           <div className="my-8 select-none animate-in slide-in-from-right">
             <div className="flex flex-col gap-8 mt-8 mx-4">
-              {/* Other navigation links */}
               <Link href="/sign-in" passHref>
                 <button className="hover:text-primary cursor-pointer flex items-center gap-2 font-[500] text-gray">
                   Login

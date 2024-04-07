@@ -4,6 +4,7 @@ import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { Button } from "../../../components/ui/button";
 
 interface InfluencerImage {
   src: string;
@@ -59,12 +60,17 @@ const MyInfluencersPage = async () => {
             </div>
           ))
         ) : (
-          // Use the determined href for the Link component
-          <div className="text-center mt-10">
+          <div className="mt-10 w-full flex flex-col items-center">
+            <p className="text-center mb-5">
+              You currently have no AI Influencers. Start creating one now!
+            </p>
             <Link href={linkHref} passHref>
-              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              <Button
+                role="link"
+                className="w-full max-w-xs rounded-full bg-purple-gradient bg-cover"
+              >
                 Create AI Influencer
-              </button>
+              </Button>
             </Link>
           </div>
         )}

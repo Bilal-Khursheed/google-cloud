@@ -13,6 +13,8 @@ const Home = async () => {
   const username = user.username;
   const welcomeMessage = `Welcome ${username} !`;
 
+  const numberOfAIInfluencers = user.influencers.length;
+
   return (
     <>
       <Header title={welcomeMessage} />
@@ -37,12 +39,12 @@ const Home = async () => {
           <div className="mt-4 flex items-center gap-4">
             <Image
               src="/assets/icons/photo.svg"
-              alt="coins"
+              alt="photo"
               width={50}
               height={50}
               className="size-9 md:size-12"
             />
-            <h2 className="h2-bold text-dark-600">{10}</h2>
+            <h2 className="h2-bold text-dark-600">{numberOfAIInfluencers}</h2>
           </div>
         </div>
       </section>

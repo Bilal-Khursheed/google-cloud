@@ -14,12 +14,31 @@ export default function Home() {
   const plansRef = useRef<HTMLDivElement>(null);
   const faqRef = useRef<HTMLDivElement>(null);
 
-  const scrollToService = () =>
-    serviceRef.current?.scrollIntoView({ behavior: "smooth" });
-  const scrollToPlans = () =>
-    plansRef.current?.scrollIntoView({ behavior: "smooth" });
-  const scrollToFAQ = () =>
-    faqRef.current?.scrollIntoView({ behavior: "smooth" });
+  const scrollToService = () => {
+    const offset = 100;
+    const servicePosition = serviceRef.current
+      ? serviceRef.current.offsetTop
+      : 0;
+    window.scrollTo({
+      top: servicePosition - offset,
+      behavior: "smooth",
+    });
+  };
+  const scrollToPlans = () => {
+    const offset = 100;
+    const plansPosition = plansRef.current ? plansRef.current.offsetTop : 0;
+    window.scrollTo({
+      top: plansPosition - offset,
+      behavior: "smooth",
+    });
+  };
+  const scrollToFAQ = () => {
+    window.scrollTo({
+      left: 0,
+      top: document.body.scrollHeight,
+      behavior: "smooth",
+    });
+  };
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
@@ -40,8 +59,7 @@ export default function Home() {
         <div ref={plansRef}>
           <PlansSection />
         </div>
-        {/* Assuming you add a FAQSection and its ref */}
-        <div ref={faqRef}> {/* Placeholder for FAQSection */}</div>
+        <div ref={faqRef}> </div>
         <TestimonialSection />
         <FaqSection />
         <FooterSection />

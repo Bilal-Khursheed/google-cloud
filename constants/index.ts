@@ -35,7 +35,7 @@ export const plans = [
     credits: 1,
     inclusions: [
       {
-        label: "15 HD Photos",
+        label: "10 HD Photos",
         isIncluded: true,
       },
       {
@@ -65,7 +65,7 @@ export const plans = [
     isBestSeller: true,
     inclusions: [
       {
-        label: "30 HD Photos",
+        label: "20 HD Photos",
         isIncluded: true,
       },
       {
@@ -90,11 +90,11 @@ export const plans = [
     _id: 3,
     name: "Pro Package",
     icon: "/assets/icons/free-plan.svg",
-    price: 59.99,
+    price: 57.99,
     credits: 3,
     inclusions: [
       {
-        label: "30 HD Photos + 5 HD Photos Erotic/Nudes",
+        label: "30 HD Photos",
         isIncluded: true,
       },
       {

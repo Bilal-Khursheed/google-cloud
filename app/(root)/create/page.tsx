@@ -4,6 +4,7 @@ import { getUserById } from "@/lib/actions/user.actions";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { Button } from "../../../components/ui/button";
 
 const CreateAiInfluencer = async () => {
   const { userId } = auth();
@@ -22,27 +23,32 @@ const CreateAiInfluencer = async () => {
       />
 
       {!hasCredits && (
-        <p className="text-center text-red-500">
-          You don&apos;t have any credits, please buy credits to get started.
-        </p>
+        <>
+          <p className="text-center text-red-500 mt-20">
+            You don't have any credits, please buy credits to get started.
+          </p>
+          <div className="flex justify-center mt-5">
+            <Link href="/credits" passHref>
+              <Button
+                type="submit"
+                role="link"
+                className="w-full max-w-xs rounded-full bg-purple-gradient bg-cover"
+              >
+                Buy Credit
+              </Button>
+            </Link>
+          </div>
+        </>
       )}
 
-      <section className="mt-10">
-        {hasCredits ? (
+      {hasCredits && (
+        <section className="mt-10">
           <TransformationForm
             userId={user._id}
             creditBalance={user.creditBalance}
           />
-        ) : (
-          <div className="text-center mt-10">
-            <Link href="/credits" passHref>
-              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Buy Credits
-              </button>
-            </Link>
-          </div>
-        )}
-      </section>
+        </section>
+      )}
     </>
   );
 };

@@ -7,7 +7,7 @@ function PortfolioSection() {
   const secondRowImages = Array.from({ length: 12 }, (_, i) => i + 7); // Images 7 to 18
 
   return (
-    <section className="mt-[11.31rem] px-4 md:px-8 lg:px-12">
+    <section className="mt-[10rem] px-4 md:px-8 lg:px-12">
       <div className="text-center mb-8">
         <p className="text-lightBlue font-bold text-2xl">
           Powerful AI, Awesome AI Influencers

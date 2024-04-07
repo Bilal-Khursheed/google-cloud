@@ -29,7 +29,7 @@ function ProcessSection() {
   ];
 
   return (
-    <section className="mt-[9rem]">
+    <section className="mt-[10rem]">
       <Header title="The Process" subtitle="How It Works?" />
       <div className="grid grid-cols-1 gap-16 mt-8 md:grid-cols-3 md:mt-[3.31rem]">
         {processSteps.map((step) => (
