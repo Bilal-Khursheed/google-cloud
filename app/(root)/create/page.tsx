@@ -24,8 +24,8 @@ const CreateAiInfluencer = async () => {
 
       {!hasCredits && (
         <>
-          <p className="text-center text-red-500 mt-20">
-            You don't have any credits, please buy credits to get started.
+          <p className="text-center text-red-500">
+            You don&apos;t have any credits, please buy credits to get started.
           </p>
           <div className="flex justify-center mt-5">
             <Link href="/credits" passHref>
