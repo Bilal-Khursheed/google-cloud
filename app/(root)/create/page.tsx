@@ -3,6 +3,7 @@ import TransformationForm from "@/components/shared/TransformationForm";
 import { getUserById } from "@/lib/actions/user.actions";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 const CreateAiInfluencer = async () => {
   const { userId } = auth();
@@ -10,6 +11,8 @@ const CreateAiInfluencer = async () => {
   if (!userId) redirect("/sign-in");
 
   const user = await getUserById(userId);
+
+  const hasCredits = user.creditBalance > 0;
 
   return (
     <>
@@ -19,10 +22,20 @@ const CreateAiInfluencer = async () => {
       />
 
       <section className="mt-10">
-        <TransformationForm
-          userId={user._id}
-          creditBalance={user.creditBalance}
-        />
+        {hasCredits ? (
+          <TransformationForm
+            userId={user._id}
+            creditBalance={user.creditBalance}
+          />
+        ) : (
+          <div className="text-center mt-10">
+            <Link href="/credits" passHref>
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Buy Credits
+              </button>
+            </Link>
+          </div>
+        )}
       </section>
     </>
   );
