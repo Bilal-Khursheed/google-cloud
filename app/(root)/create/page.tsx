@@ -23,7 +23,7 @@ const CreateAiInfluencer = async () => {
 
       {!hasCredits && (
         <p className="text-center text-red-500">
-          You don't have any credits, please buy credits to get started.
+          You don&apos;t have any credits, please buy credits to get started.
         </p>
       )}
 
