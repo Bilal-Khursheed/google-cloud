@@ -126,3 +126,5 @@ export async function createInfluencer(userId: string, influencerId: string) {
     return { success: false, message: err.message };
   }
 }
+
+// RETRIEVE INFLUENCER
