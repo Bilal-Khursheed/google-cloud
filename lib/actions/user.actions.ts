@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import User from "../database/models/user.model";
 import { connectToDatabase } from "../database/mongoose";
 import { handleError } from "../utils";
+import { Storage } from "@google-cloud/storage";
 
 // CREATE
 export async function createUser(user: CreateUserParams) {
@@ -126,5 +127,3 @@ export async function createInfluencer(userId: string, influencerId: string) {
     return { success: false, message: err.message };
   }
 }
-
-// RETRIEVE INFLUENCER
